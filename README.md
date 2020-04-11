@@ -65,15 +65,13 @@ test file:
 - 4_4_figjoejyn_series_threads.jl #multi-thread--shift level  
 
 ###### interest in comparison  
-- 4and3_fix_nest.jl #compare selection strength, migration rate; local and non-local  
-                    #4 represent model with migration in t distribution
-                    #3 represent model with migration in binomial distribution
 - compare_s.jl #plotting the output from last file  
-
-- 4and3_largenDemes.jl #large deme (nDemes = 500)  
+- 4and3_largenDemes.jl #large deme (nDemes = 500)
+                       #4 represent model with migration in t distribution
+                       #3 represent model with migration in binomial distribution
 - 4_series_test_new.jl #all else  
-
 - distribution.jl #plotting different migration distribution
+
 - time_cost.xlsx #time for simulation corresponding to the comparison and parameters applied
                  #4_* represent in model with migration in t distribution
                  #3_* represent in model with migration in binomial distribution
