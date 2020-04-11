@@ -67,3 +67,4 @@ compare_s.jl #plotting the output from last file
 4_series_test_new.jl #all else  
 
 distribution.jl #plotting different migration distribution
+time_cost.xlsx #time for simulation corresponding to the comparison and parameters applied
