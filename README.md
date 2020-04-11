@@ -1,7 +1,7 @@
 # The number of origins  
 Estimation of the number of origin of populaiton with spatial structure for inferring the effective population size
 
-## Non-spatial model  
+## 1_*.jl, 2_*.jl: Non-spatial model  
 ###### 1_*.jl #multinomial distribution for genetic drift (Non-spatial model)
 1_allele_frequency.jl # the process of selection, genetic drift and mutation   
                        a. selection (adjust the frequency entering genetic drift)  
