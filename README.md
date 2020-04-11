@@ -62,10 +62,10 @@ test file:
 - 4_2_1d_tsamp.jl #time-series sampling of existant haplotype  
 - 4_3_1d_fixsamp.jl #collect the time to fixation and asymptotic number of origins  
 - 4_4_figjoejyn_series.jl #function collection for output with different parameters  
-- 4_4_figjoejyn_series_threads.jl #multi-thread--shift level  
+- 4_4_figjoejyn_series_threads.jl #multi-thread added compared to 4_4_figjoejyn_series.jl
 
 ###### interest in comparison  
-- compare_s.jl #plotting the output from last file  
+- compare_nu.jl #compare the degree of freedom in sampling migration in t distribution
 - 4and3_largenDemes.jl #large deme (nDemes = 500)
                        #4 represent model with migration in t distribution
                        #3 represent model with migration in binomial distribution
