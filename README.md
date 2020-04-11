@@ -2,7 +2,7 @@
 Estimation of the number of origin of populaiton with spatial structure for inferring the effective population size
 
 ## Flowchart
-![](flowchart.png)
+<img src="flowchart.png" alt="flowchart" width="450"/>
 
 ## 1_\*.jl, 2_\*.jl: Non-spatial model  
 ###### 1_*.jl #multinomial distribution for genetic drift (Non-spatial model)
