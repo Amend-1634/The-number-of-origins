@@ -4,9 +4,9 @@ Estimation of the number of origin of populaiton with spatial structure for infe
 ## Non-spatial model  
 ###### 1_*.jl #multinomial distribution for genetic drift (Non-spatial model)
 1_allele_frequency.jl # the process of selection, genetic drift and mutation   
-                      # a.selection (adjust the frequency entering genetic drift)  
-                      # b.genetic drift (multinomial distribution) 
-                      # c.mutation (Poisson distribution)  
+                       a. selection (adjust the frequency entering genetic drift)  
+                       b. genetic drift (multinomial distribution) 
+                       c. mutation (Poisson distribution)  
 1_2num_origin.jl # count the existant allele (frequency not=0) along the generations   
 1_3multinomial_plot.jl # test and plot   
 
@@ -17,8 +17,7 @@ Estimation of the number of origin of populaiton with spatial structure for infe
 2_4num_origin_gaussian.jl #count the existant allele  
 2_5gaussian_test.jl #test and plot  
 
-## One-dimensional model  
-3_*.jl # local migration;  
+## 3_*.jl: One-dimensional model with local migration merely
        #a. use 1_allele_frequency.jl or 2_3allele_frequency_gaussian.jl  
        #b. local migration:  
               ## total migration cases of each deme (Poisson sampling)--leaving  
@@ -40,12 +39,12 @@ Estimation of the number of origin of populaiton with spatial structure for infe
 3_3_1d_fixsamp_osci.jl # collect for oscillating population size  
 3_3_test.jl #check 3_*.jl series function right or not  
 
-###### 3_4  
+###### 3_4*.jl: compare parameters and plot
 3_4_figjoejyn_series.jl # aligning the output from different parameters for later comparison  
 3_4_figjoejyn_series_threads.jl #multi-threads for speeding up (not for large data)  
 3_4_figjoejyn_series_test.jl #later comparison by plotting  
 
-## 1d with dispersal in Student's t distribution (not only local migration)  
+## 4_*.jl: 1d model with migration in Student's t distribution (local + non-local)  
 4_1_1nonlocal_frequency.jl  
                         - selection + genetic drift + mutation  
                         - migration:  
@@ -64,4 +63,4 @@ compare_s.jl #plotting the output from last file
 4and3_largenDemes.jl #large deme (nDemes = 500)  
 4_series_test_new.jl #all else  
 
-distribution.jl #plotting different dispersal distribution
+distribution.jl #plotting different migration distribution
