@@ -4,7 +4,7 @@ Estimation of the number of origin of populaiton with spatial structure for infe
 ## Flowchart
 <img src="flowchart.png" alt="flowchart" width="450"/>
 
-**all_pkg.jl** #before start: download all the packages + summarize the questions
+**all_pkg.jl** #before start: download all the packages + all questions summarized
 
 ## 1_\*.jl, 2_\*.jl: Non-spatial model  
 ###### 1_*.jl #multinomial distribution for genetic drift (Non-spatial model)
