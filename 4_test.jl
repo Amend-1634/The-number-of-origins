@@ -14,7 +14,7 @@ using Plots
 plot(tsamp,avn)
 
 
-N=1e5;nDemes=5;twoNmu=10;s0=0.1;mig=0.5;M=3;T=1000;Gauss=0;nu=1
+N=1e5;nDemes=5;twoNmu=10;s0=0.1;mig=0.5;M=3;T=1000;Gauss=1;nu=1
 include("4_3_1d_fixsamp.jl")
 t_avn, t_se, eta_avn, eta_se, fix_M=num_origin_1d_fix(N,nDemes,twoNmu,s0,mig,M,
   T,Gauss,nu)
