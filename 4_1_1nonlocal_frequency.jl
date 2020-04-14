@@ -87,18 +87,28 @@ function gaussian_1d_nonlocalmig(N,twoNmu,s0,mig,T,nDemes, Gauss,nu)#N
 
         #s_=[fill(s0,K-1),0] #0 for wild type #not needed after simplfication
 
-        #xx[xx.<0].=0 #in case ss<0 => xx<0
-         #but xwt*s_ will never be negative?=>seems unnesseccary
+        xx[xx.<0].=0 #in case ss<0 => xx<0
         xxK = 1-sum(xx) #Frequency of wild type (wt is the Kth allele)
 
         if xxK < 0 # in case wild type frequency is negative
             xxK = 0 # set wt frequency to 0
             xx = xx/sum(xx) #resets all mutant frequencies to sum to 1
         end
+        p=[xx;xxK]
+
+        if !isempty(p[p.<0])
+            println("tsamp_p<0",p[p.<0])
+        end
+
+        if sum(p)!=1
+            println("tsamp_sum(p)", sum(p))
+        end
 
         ## Genetic drift （Gaussian approximation of multinomial sampling）
         #println("p for drift", [xx;xxK])
         if Gauss == 1 #true
+            # println("[xx;xxK]",[xx;xxK])
+
             z=gaussian_multinomial(NDeme,[xx;xxK]) #z in frequency
             n_=round.(Int,z*NDeme)#n in individuals, in integer individuals
 
@@ -157,13 +167,13 @@ function gaussian_1d_nonlocalmig(N,twoNmu,s0,mig,T,nDemes, Gauss,nu)#N
         MIG = mig*n_B #expected number of migrants individuals #column vec
         migLV = pois_rand.(MIG) #actual number of migrants
 
-        # for g in 1:nHaplotypes # poisson may generate migration cases > total individuals
-        #                         # while having a relatively large migration rate
-        #
-        #     if migLV[g] > n_B[g] # looks for negative values and sets to zero
-        #         migLV[g] = Int(n_B[g])
-        #     end
-        # end
+        for g in 1:nHaplotypes # poisson may generate migration cases > total individuals
+                                # while having a relatively large migration rate
+
+            if migLV[g] > n_B[g] # looks for negative values and sets to zero
+                migLV[g] = Int(n_B[g])
+            end
+        end
 
         ##determine direction and how many demes (distance) it jumped across
         idnot0=findall(!isequal(0),migLV)

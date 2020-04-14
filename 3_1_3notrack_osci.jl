@@ -71,6 +71,7 @@ function gaussian_1d_localmig(N, phi, har_geo, twoNmu,s0,mig,T,nDemes,Gauss)#N
 
     #Calculating oscillating population size in each generation
     N=0.5(Nmax+Nmin)+0.5(Nmax-Nmin)*sin(2pi*t/prd) #oscillating population size
+    NDeme=N/nDemes #NDeme: deme size
     # println("oscillating NDeme ", NDeme)
 
     ## Population Parameters

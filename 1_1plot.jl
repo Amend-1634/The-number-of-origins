@@ -7,6 +7,8 @@ cd("D://Julia/func")
 include("1_1allele_frequency.jl")
 @time x1,X1,X_deter1,K1=allele_frequency(1,1e6,1,1/50,2000)
                        #allele_frequency(K,N,twoNmu,s0,T)
+using Plots
+plot(x1')
 
 @time x10,X10,X_deter10,K10=allele_frequency(1,1e6,10,1/50,2000)
 

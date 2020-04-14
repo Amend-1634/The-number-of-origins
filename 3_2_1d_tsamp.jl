@@ -2,6 +2,7 @@
  #such as constant or oscillating population size
 using Distributions
 using Random
+include("3_1_2notrack_cons.jl")
 
 #1d local migration model
 

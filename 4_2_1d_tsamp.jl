@@ -41,10 +41,8 @@ function num_origin_1d_t(N,nDemes,twoNmu,s0,mig,M,T,Gauss,nu)
     eta = zeros(len_tsamp,M) #Preallocating eta matrix
     X = zeros(len_tsamp,M) #Preallocating matrix for total frequency of mutants
 
-    @threads for m in 1:M ##Replicates
-
-        println("replicate#######",m) #Showing the progress of the simulation
-
+    for m in 1:M ##Replicates
+        println("replicate####### ",m) #Showing the progress of the simulation
         D, X_D = gaussian_1d_nonlocalmig(N,twoNmu,s0,mig,T,nDemes,Gauss,nu)
             #call 4_1_1nonlocal_frequency.jl to provide the allele frequency array
 
@@ -60,14 +58,21 @@ function num_origin_1d_t(N,nDemes,twoNmu,s0,mig,M,T,Gauss,nu)
              #where K is array holding number of individuals sampled from each deme
              #p has to be a column vector
 
-
             #Preallocating freq_sampkj
             nHaplotypes = size(D[1])[1] #nHaplotypes=number of rows in any one of the D arrays, since each element of the cell array should have same dimensions
             freq_sampkj = zeros(nDemes,nHaplotypes)
 
             #Sampling the frequency of K(j) number of haplotypes for each sampling generation
             for j in 1:nDemes
-                p=vec(D[j][:,indt])#indt: sampled time point
+                p=vec(D[j][:,indt])
+                 #p: frequncy vector in j-th deme in indt-th time point
+                if !isempty(p[p.<0])
+                    println("tsamp_p<0",p[p.<0])
+                end
+
+                if sum(p)!=1
+                    println("tsamp_sum(p)", sum(p))
+                end
                 freq_sampkj[j,:] = rand(Multinomial(K[j],p))
             end
 
@@ -89,7 +94,7 @@ function num_origin_1d_t(N,nDemes,twoNmu,s0,mig,M,T,Gauss,nu)
             freq_samp_total[k,m] = freq_sumkj #Sum over demes to give average total frequency of each haplotype. Any haplotype>0 indicates that it is present in at least one deme
 
         end #for k in 1:len_tsamp
-    end #for m = 1:M
+    end #for m in 1:M
 
     ## Determining plotting variables
     #Preallocating vectors
@@ -122,6 +127,6 @@ function num_origin_1d_t(N,nDemes,twoNmu,s0,mig,M,T,Gauss,nu)
 
     end
 
-    return avn, se, tsamp, medn, lqrn, uqrn,
-            X_avn, X_se, X_medn, X_lqrn, X_uqrn #all output are vectors
+    return avn, se, tsamp, medn, lqrn, uqrn, X_avn, X_se, X_medn, X_lqrn, X_uqrn
+    #all output are vectors
  end #function num_origin_1d_t()

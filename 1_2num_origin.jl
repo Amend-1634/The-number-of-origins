@@ -6,9 +6,7 @@ using Random
 using Combinatorics
 using Base.Threads #@threads
 using Plots
-pwd()
-cd()
-include("")
+include("1_1allele_frequency.jl")
 
 
 function num_origin(s0_seq,twoNmu_seq,N,replicates) #subplot generator
@@ -27,15 +25,19 @@ function num_origin(s0_seq,twoNmu_seq,N,replicates) #subplot generator
   semi_mtx= Array{Float64}(undef,2001,0) #matrix for predicted average number of origins
   semi_mtx_se= Array{Float64}(undef,2001,0) #matrix for the se of predicted number of origins
 
- @threads for s0 in s0_seq #@threads could make it faster by apply multi-threads
+ # @threads
+ for s0 in s0_seq #@threads could make it faster by apply multi-threads
     #but be careful if using @threads: a. s0_seq has to have >1 elements
                                       #b. the for loop is parallel instead of successive
 
-    @threads for twoNmu  in twoNmu_seq
+    # @threads
+    for twoNmu  in twoNmu_seq
 
       simu_seq_pile=Array{Float64}(undef,2001,0)
       semi_seq_pile=Array{Float64}(undef,2001,0)
-      @threads for j in 1:replicates
+      # @threads
+      println(replicates)
+      for j in 1:replicates
          K=1
          T=2000
 
@@ -49,8 +51,8 @@ function num_origin(s0_seq,twoNmu_seq,N,replicates) #subplot generator
              ns=Int(1e3)#sample size
              #Simulations
              xk = rand(Multinomial(Int(ns),x[:,k])) #sampling noise-same distribution with genetic drift
-             simu=count(a->0,xk[1:end-1]) #sampled allele--simulation
-             #threshold: when mutant allele frequency >= 1/ns can be sampled
+             simu=count(a->a>0,xk[1:end-1]) #count the number of origins from
+              #allele of which the frequency>= 1/ns (can be sampled)
 
              push!(simu_seq,simu)
 

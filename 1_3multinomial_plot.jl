@@ -1,4 +1,6 @@
 pwd()
+cd("D:\\Julia\\func") #before calling the function by include("")
+                      #set home directory those files stored in first
 include("1_1allele_frequency.jl")
 include("1_2num_origin.jl")
 
@@ -6,8 +8,9 @@ include("1_2num_origin.jl")
 @time ndx,simu_mtx,simu_mtx_se,semi_mtx,semi_mtx_se=num_origin([0.05; 0.005],[1],1e8,2)
 # ndx,simu_mtx,simu_mtx_se,semi_mtx,semi_mtx_se,ewen_mtx,ewen_mtx_se=
 display(ndx);display(simu_mtx);display(semi_mtx)
+using Plots
 plot(semi_mtx)
-plot!(simu_mtx)#one case is distict
+plot!(simu_mtx) #one case is distict
 pwd()
 savefig("..\\photo\\distinct_semi_simu")#why?
 

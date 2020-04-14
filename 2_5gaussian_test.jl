@@ -1,21 +1,21 @@
 
 using Profile #@profiler
 
-#test allele_var_mtx
+#test 2_1allele_var_mtx.jl
  # x=rand(5)
  # B=allele_var_mtx(x)
  # round.(B,digits=4)
 
+#Test 2_2gaussian_multinomial.jl
 pwd()
 cd("D:\\Julia\\func")#pathway to your working directory
-include("2_1allele_var_mtx.jl")
-#test Gaussian_multinomial()
+#fake frequecy vector generated
 function simu_p(n)
     x=randn(n)
     x=x/sum(x)
     return x
  end
- xx=simu_p(100)
+ xx=simu_p(1000)
  N=1e6
 include("2_2gaussian_multinomial.jl") #only need to include the last file
  #as former functions are called in this file by include("")
@@ -25,25 +25,20 @@ sum(z)
 println(xx)
 plot(z)#same output as Matlab code
 
-include("2_1allele_var_mtx.jl")
- include("2_2gaussian_multinomial.jl")
- include("2_3allele_frequency_gaussian.jl")
- using Profile
- # allele_frequency_Gaussian(K,N,twoNmu,s0,T)
-@profiler x,X,X_deter,K=allele_frequency_Gaussian(1,1e6,10,0.05,2000)
-println(size(x),size(X),size(X_deter),size(K))
-@time x,X,X_deter,K=allele_frequency_Gaussian(1,1e6,10,0.05,2000)
-,X,X_deter,K
 
+include("2_3allele_frequency_gaussian.jl")
+using Profile
+ # allele_frequency_Gaussian(K,N,twoNmu,s0,T)
+# @profiler x,X,X_deter,K=allele_frequency_Gaussian(1,1e6,10,0.05,2000)
+ #@profiler is to check the performance
+println(size(x),size(X),size(X_deter),size(K))
+@time x,X,X_deter,K=allele_frequency_gaussian(1,1e6,10,0.05,2000)
+plot(x')#checked function well
 
 #test2_1 to 2_4
-include("2_1allele_var_mtx.jl")
- include("2_2gaussian_multinomial.jl")
- include("2_3allele_frequency_gaussian.jl")
- include("2_4num_origin_gaussian.jl")
- using Profile
-
-@time ndx,simu_mtx,simu_mtx_se,semi_mtx,semi_mtx_se=num_origin_Gaussian([0.05; 0.005],[1],1e8,2)
+include("2_4num_origin_gaussian.jl")
+@time ndx,simu_mtx,simu_mtx_se,semi_mtx,semi_mtx_se=num_origin_gaussian([0.05; 0.005],[1],1e8,2,500)
+                                                   #num_origin_gaussian(s0_seq,twoNmu_seq,N,replicates,T)
 # ndx,simu_mtx,simu_mtx_se,semi_mtx,semi_mtx_se,ewen_mtx,ewen_mtx_se=
 display(ndx);display(simu_mtx);display(semi_mtx)
 plot(semi_mtx)
@@ -126,14 +121,6 @@ gr()
  legendfontsize=6,
  background_color_legend=:transparent)
 savefig("../photo/simu_semi_3")
-
-
-
-
-
-
-
-
 
 
 
