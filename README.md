@@ -4,6 +4,8 @@ Estimation of the number of origin of populaiton with spatial structure for infe
 ## Flowchart
 <img src="flowchart.png" alt="flowchart" width="450"/>
 
+**all_pkg.jl** #before start: download all the packages + summarize the questions
+
 ## 1_\*.jl, 2_\*.jl: Non-spatial model  
 ###### 1_*.jl #multinomial distribution for genetic drift (Non-spatial model)
 - 1_1allele_frequency.jl # the process of selection, genetic drift and mutation   
@@ -70,7 +72,7 @@ test file:
                        #4 represent model with migration in t distribution
                        #3 represent model with migration in binomial distribution
 - 4_series_test_new.jl #all else  
-- distribution.jl #plotting different migration distribution
+- test_sampling_distribution.jl #plotting different migration distribution
 
 - time_cost.xlsx #time for simulation corresponding to the comparison and parameters applied
                  #4_* represent in model with migration in t distribution
